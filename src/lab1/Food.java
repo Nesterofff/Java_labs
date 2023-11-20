@@ -1,3 +1,5 @@
+package lab1;
+
 import java.util.Objects;
 
 public abstract class Food implements Consumable, Nutritious {
@@ -45,6 +47,6 @@ public abstract class Food implements Consumable, Nutritious {
         return calories;
     }
 
-    // Реализация метода consume() удалена из базового класса Food
-// Это можно сделать, потому что сам Food - абстрактный
+    // Реализация метода consume() удалена из базового класса lab1.Food
+// Это можно сделать, потому что сам lab1.Food - абстрактный
 }

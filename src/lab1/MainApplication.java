@@ -1,7 +1,6 @@
-// Объявление класса частью пакета
+package lab1;// Объявление класса частью пакета
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class MainApplication {
 
     public static void main(String[] args) {
         // Определение ссылок на продукты завтрака
-        List<Food> breakfast = new ArrayList<>(); // создание массива Food
+        List<Food> breakfast = new ArrayList<>(); // создание массива lab1.Food
         // Анализ аргументов командной строки и создание для них
         // экземпляров соответствующих классов для завтрака
 
@@ -78,7 +77,7 @@ public class MainApplication {
         }
 
 // Перебор всех элементов массива
-        for (Food item : breakfast) // у класса Food есть метод consumable
+        for (Food item : breakfast) // у класса lab1.Food есть метод consumable
             if (item != null)
 // Если элемент не null – употребить продукт
                 item.consume(); // Метод для поедания
@@ -90,8 +89,8 @@ public class MainApplication {
                 break;
         System.out.println("Всего хорошего!");
 
-        /*ChewingGum F = new ChewingGum("123");
-        ChewingGum F1 = new ChewingGum("123");
+        /*lab1.ChewingGum F = new lab1.ChewingGum("123");
+        lab1.ChewingGum F1 = new lab1.ChewingGum("123");
         System.out.println(F.equals(F1));*/
     }
 }

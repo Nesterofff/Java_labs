@@ -1,3 +1,5 @@
+package lab1;
+
 public class Cheese extends Food {
     public Cheese() {
         super("Сыр", 20);

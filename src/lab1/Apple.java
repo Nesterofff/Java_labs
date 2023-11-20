@@ -1,3 +1,5 @@
+package lab1;
+
 public class Apple extends Food {
     // Новое внутреннее поле данных РАЗМЕР
     private String size;
