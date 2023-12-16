@@ -77,11 +77,15 @@ public class MainFrame extends JFrame {
         JMenu tableMenu = new JMenu("Таблица");
 // Добавить его в главное меню
         menuBar.add(tableMenu);
+// Создаем и добавляем пункт справка
+        JMenu SpravkaMenu = new JMenu("Справка");
+        menuBar.add(SpravkaMenu);
+
 // Создать новое "действие" по сохранению в текстовый файл
         Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser == null) {
-// Если экземпляр диалогового окна "Открыть файл " ещѐ не создан,
+// Если экземпляр диалогового окна "Открыть файл" ещѐ не создан,
 // то создать его
                     fileChooser = new JFileChooser();
 // и инициализировать текущей директорией
@@ -125,6 +129,20 @@ public class MainFrame extends JFrame {
 // По умолчанию пункт меню является недоступным(данных ещѐ нет)
         saveToGraphicsMenuItem.setEnabled(false);
 // Создать новое действие по поиску значений многочлена
+
+        /*На основе абстрактного класса
+        AbstractAction создаѐтся потомок базового класса AbstractAction, реализующего реакцию на
+        наступившее событие, после чего для него создаѐтся соответствующий пункт
+        меню:*/
+        Action aboutProgrammAction = new AbstractAction("О программе") {
+           // Реализует унаследованный метод ->
+            public void actionPerformed(ActionEvent event) {
+                JLabel info = new JLabel("Подготовил: Петрович Кирилл, 2 курс 5 группа");
+                JOptionPane.showMessageDialog(MainFrame.this, info,
+                        "О программе", JOptionPane.PLAIN_MESSAGE);
+            }
+        };
+
         Action searchValueAction = new AbstractAction("Найти значение многочлена") {
             public void actionPerformed(ActionEvent event) {
 // Запросить пользователя ввести искомую строку
@@ -136,6 +154,7 @@ public class MainFrame extends JFrame {
                 getContentPane().repaint();
             }
         };
+        SpravkaMenu.add(aboutProgrammAction);
 
 // Добавить действие в меню "Таблица"
         searchValueMenuItem = tableMenu.add(searchValueAction);
@@ -283,7 +302,7 @@ public class MainFrame extends JFrame {
 // Область для вывода результата пока что пустая
         hBoxResult = Box.createHorizontalBox();
         hBoxResult.add(new JPanel());
-// Установить контейнер hBoxResult в главной (центральной) области граничной компоновки
+// Установить контfейнер hBoxResult в главной (центральной) области граничной компоновки
         getContentPane().add(hBoxResult, BorderLayout.CENTER);
     }
 
