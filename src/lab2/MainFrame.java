@@ -16,7 +16,7 @@ import static java.lang.Math.*;
 
 @SuppressWarnings("serial")
 // Главный класс приложения, он же класс фрейма
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame { //окно верхнего уровня
     // Размеры окна приложения в виде констант
     private static final int WIDTH = 500;
     private static final int HEIGHT = 320;
@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
     private JTextField textFieldResult;
     // Группа радио-кнопок для обеспечения уникальности выделения в группе
 //    private JTextField textFieldMemory;
-   private JLabel textMemory = new JLabel("mem1: 0"); // Поле для памяти /////ВВВВВВООТТТТ
+    private JLabel textMemory = new JLabel("mem1: 0"); // Поле для памяти (Надпись) /////ВВВВВВООТТТТ
     private ButtonGroup memoryButtons = new ButtonGroup();
     private Box hboxMemory = Box.createHorizontalBox();
     private ButtonGroup radioButtons = new ButtonGroup();
@@ -61,7 +61,7 @@ public class MainFrame extends JFrame {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 MainFrame.this.formulaId = formulaId;
-            }
+            } // this указывает на экземпляр класса
         });
         radioButtons.add(button);
         hboxFormulaType.add(button);
@@ -113,26 +113,47 @@ public class MainFrame extends JFrame {
         Box hboxVariables = Box.createHorizontalBox();
         hboxVariables.setBorder(
                 BorderFactory.createLineBorder(Color.RED));
-        hboxVariables.add(Box.createHorizontalGlue());
+        /*hboxVariables.add(Box.createHorizontalGlue());*/
 
         hboxVariables.add(labelForX);
-        hboxVariables.add(Box.createHorizontalStrut(10));
+        /*hboxVariables.add(Box.createHorizontalStrut(10));*/
         hboxVariables.add(textFieldX);
-
         hboxVariables.add(Box.createHorizontalStrut(100));
-        hboxVariables.add(labelForY);
-        hboxVariables.add(Box.createHorizontalStrut(10));
-        hboxVariables.add(textFieldY);
-
-        hboxVariables.add(Box.createHorizontalStrut(100));
-        hboxVariables.add(labelForZ);
-        hboxVariables.add(Box.createHorizontalStrut(10));
-        hboxVariables.add(textFieldZ);
         hboxVariables.add(Box.createHorizontalGlue());
+
+
+        hboxVariables.add(labelForY);
+        //hboxVariables.add(Box.createHorizontalStrut(10));....
+        hboxVariables.add(textFieldY);
+        hboxVariables.add(Box.createHorizontalStrut(100));
+        hboxVariables.add(Box.createHorizontalGlue());
+
+
+
+        hboxVariables.add(labelForZ);
+        /*hboxVariables.add(Box.createHorizontalStrut(10));*/
+        /* hboxVariables.add(Box.createHorizontalGlue());*/
+        hboxVariables.add(textFieldZ);
+        /*hboxVariables.add(Box.createHorizontalGlue());*/
+
+        // Кнопки mem
+        hboxMemory.add(Box.createHorizontalGlue());
+        addMemoryButton("mem1", 0);
+        addMemoryButton("mem2", 1);
+        addMemoryButton("mem3", 2);
+        memoryButtons.setSelected( // По умолчанию задали
+                memoryButtons.getElements().nextElement().getModel(), true);
+        hboxMemory.add(Box.createHorizontalGlue());
+
+        hboxMemory.setBorder(
+                BorderFactory.createLineBorder(Color.YELLOW));
+
+
+
 
 // Создать область для вывода результата
         JLabel labelForResult = new JLabel("Результат:");
-        textFieldResult = new JTextField("0", 10);
+        textFieldResult = new JTextField("0", 30); ///10
         textFieldResult.setMaximumSize(textFieldResult.getPreferredSize());
         Box hboxResult = Box.createHorizontalBox();
         hboxResult.add(Box.createHorizontalGlue());
@@ -146,16 +167,7 @@ public class MainFrame extends JFrame {
         hboxResult.add(Box.createHorizontalGlue());
         hboxResult.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
-        // Кнопки mem
-        hboxMemory.add(Box.createHorizontalGlue());
-        addMemoryButton("mem1", 0);
-        addMemoryButton("mem2", 1);
-        addMemoryButton("mem3", 2);
-        memoryButtons.setSelected( // По умолчанию задали
-                memoryButtons.getElements().nextElement().getModel(), true);
-        hboxMemory.add(Box.createHorizontalGlue());
-        hboxMemory.setBorder(
-                BorderFactory.createLineBorder(Color.YELLOW));
+
 
 
 
@@ -228,11 +240,13 @@ public class MainFrame extends JFrame {
 // Связать области воедино в компоновке BoxLayout
         Box contentBox = Box.createVerticalBox();
         contentBox.add(Box.createVerticalGlue());
+
         contentBox.add(hboxFormulaType);
 
-        contentBox.add(hboxMemory);
+
 
         contentBox.add(hboxVariables);
+        contentBox.add(hboxMemory);
         contentBox.add(hboxResult);
         contentBox.add(hboxButtons);
 
@@ -242,8 +256,12 @@ public class MainFrame extends JFrame {
 
     // Главный метод класса
     public static void main(String[] args) {
+        //создаѐт экземпляр фрейма;
         MainFrame frame = new MainFrame();
+        //задаѐт реакцию на закрытие окна приложения (например, завершение
+        //приложения);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //отображает фрейм на экране
         frame.setVisible(true);
     }
 }
